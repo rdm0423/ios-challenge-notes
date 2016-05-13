@@ -73,18 +73,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="How Was Your Day?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NhR-8d-mWW">
-                                <rect key="frame" x="20" y="95" width="560" height="420"/>
+                                <rect key="frame" x="20" y="72" width="560" height="443"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.01178563294" green="0.023102075909999999" blue="0.097413644600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="b7g-Vq-cWN" firstAttribute="top" secondItem="NhR-8d-mWW" secondAttribute="bottom" constant="85" id="6Ts-4C-MHL"/>
-                            <constraint firstItem="NhR-8d-mWW" firstAttribute="trailing" secondItem="wp5-ZE-6LD" secondAttribute="trailingMargin" id="W1P-1a-zIa"/>
-                            <constraint firstItem="NhR-8d-mWW" firstAttribute="leading" secondItem="wp5-ZE-6LD" secondAttribute="leadingMargin" id="dgL-bb-RRM"/>
-                            <constraint firstItem="NhR-8d-mWW" firstAttribute="top" secondItem="WLC-Lj-TUn" secondAttribute="bottom" constant="31" id="fqu-af-SOF"/>
+                            <constraint firstItem="NhR-8d-mWW" firstAttribute="leading" secondItem="wp5-ZE-6LD" secondAttribute="leadingMargin" id="8FA-IC-I9j"/>
+                            <constraint firstItem="NhR-8d-mWW" firstAttribute="top" secondItem="WLC-Lj-TUn" secondAttribute="bottom" constant="8" symbolic="YES" id="VFd-5g-V7w"/>
+                            <constraint firstItem="b7g-Vq-cWN" firstAttribute="top" secondItem="NhR-8d-mWW" secondAttribute="bottom" constant="85" id="cEz-xW-R5D"/>
+                            <constraint firstItem="NhR-8d-mWW" firstAttribute="trailing" secondItem="wp5-ZE-6LD" secondAttribute="trailingMargin" id="o5u-Kw-Nsc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1V0-ec-36G">

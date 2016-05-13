@@ -22,6 +22,9 @@ class NoteDetailViewController: UIViewController, UITextFieldDelegate {
         if let note = note {
             
             updateWithNote(note)
+        } else {
+            
+            self.navigationItem.title = "New Note"
         }
         
         
