@@ -17,18 +17,12 @@ class NoteDetailViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // set title of detail to be first ... characters of the note
         
         if let note = note {
-            
             updateWithNote(note)
         } else {
-            
             self.navigationItem.title = "New Note"
         }
-        
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,6 +45,11 @@ class NoteDetailViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    @IBAction func infoButtonTapped(sender: AnyObject) {
+        infoAlert()
+    }
+    
+    
     func updateWithNote(note: Note) {
         
         self.note = note
@@ -64,22 +63,18 @@ class NoteDetailViewController: UIViewController, UITextFieldDelegate {
     // MARK: UITextField Dismiss
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
         
+        textField.resignFirstResponder()
         return true
     }
     
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - Action Alert
+    func infoAlert() {
+        
+        let alertController = UIAlertController(title: "QUICK TIP", message: "To give Title's to notes, hit enter after first line :)", preferredStyle: .Alert)
+        let addActionOk = UIAlertAction(title: "GOT IT", style: .Default, handler: nil)
+        alertController.addAction(addActionOk)
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
-    */
 
 }
