@@ -53,9 +53,7 @@ class NoteDetailViewController: UIViewController, UITextFieldDelegate {
     func updateWithNote(note: Note) {
         
         self.note = note
-        
         noteTextView.text = note.entry
-        
         self.navigationItem.title = note.entry
     }
     

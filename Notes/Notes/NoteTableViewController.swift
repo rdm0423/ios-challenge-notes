@@ -14,10 +14,7 @@ class NoteTableViewController: UITableViewController, UISearchBarDelegate {
     
     var searchActive: Bool = false
     var filtered: [String] = []
-//    var notes: [Note]
-    
-    
-    
+    var notes: [Note]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,8 +54,8 @@ class NoteTableViewController: UITableViewController, UISearchBarDelegate {
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
-        let notes = NoteController.sharedController.notes
-        
+//        let notes = NoteController.sharedController.notes
+//        
 //        filtered = notes.filter({ (text) -> Bool in
 //            let tmp: NSString = text
 //            let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
@@ -71,8 +68,6 @@ class NoteTableViewController: UITableViewController, UISearchBarDelegate {
 //        }
 //        self.tableView.reloadData()
     }
-
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -87,13 +82,17 @@ class NoteTableViewController: UITableViewController, UISearchBarDelegate {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        
+        // TODO: Set code for handling activesearch 
+        
         return NoteController.sharedController.notes.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("noteCell", forIndexPath: indexPath)
+        
+        // TODO: Set code for handling activesearch
         
         let note = NoteController.sharedController.notes[indexPath.row]
         
@@ -142,6 +141,7 @@ class NoteTableViewController: UITableViewController, UISearchBarDelegate {
         // Pass the selected object to the new view controller.
         
         if segue.identifier == "viewNoteSegue" {
+            
             
             let detailViewController = segue.destinationViewController as? NoteDetailViewController
             
