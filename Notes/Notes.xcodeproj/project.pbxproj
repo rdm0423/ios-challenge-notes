@@ -11,6 +11,10 @@
 		1AFCF6C31CDC050E006D2F3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCF6C11CDC050E006D2F3D /* Main.storyboard */; };
 		1AFCF6C51CDC050E006D2F3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCF6C41CDC050E006D2F3D /* Assets.xcassets */; };
 		1AFCF6C81CDC050E006D2F3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCF6C61CDC050E006D2F3D /* LaunchScreen.storyboard */; };
+		FFC610911CE6295A00E93DAB /* NoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC610901CE6295A00E93DAB /* NoteTableViewController.swift */; };
+		FFC610931CE6296900E93DAB /* NoteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC610921CE6296900E93DAB /* NoteDetailViewController.swift */; };
+		FFC610951CE6297100E93DAB /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC610941CE6297100E93DAB /* Note.swift */; };
+		FFC610971CE6297700E93DAB /* NoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC610961CE6297700E93DAB /* NoteController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +24,10 @@
 		1AFCF6C41CDC050E006D2F3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1AFCF6C71CDC050E006D2F3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1AFCF6C91CDC050E006D2F3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFC610901CE6295A00E93DAB /* NoteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteTableViewController.swift; sourceTree = "<group>"; };
+		FFC610921CE6296900E93DAB /* NoteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteDetailViewController.swift; sourceTree = "<group>"; };
+		FFC610941CE6297100E93DAB /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		FFC610961CE6297700E93DAB /* NoteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,12 +61,40 @@
 			isa = PBXGroup;
 			children = (
 				1AFCF6BD1CDC050E006D2F3D /* AppDelegate.swift */,
+				FFC6109A1CE6298E00E93DAB /* View Controller */,
+				FFC610981CE6297C00E93DAB /* Model Coontroller */,
+				FFC610991CE6298700E93DAB /* Model */,
 				1AFCF6C11CDC050E006D2F3D /* Main.storyboard */,
 				1AFCF6C41CDC050E006D2F3D /* Assets.xcassets */,
 				1AFCF6C61CDC050E006D2F3D /* LaunchScreen.storyboard */,
 				1AFCF6C91CDC050E006D2F3D /* Info.plist */,
 			);
 			path = Notes;
+			sourceTree = "<group>";
+		};
+		FFC610981CE6297C00E93DAB /* Model Coontroller */ = {
+			isa = PBXGroup;
+			children = (
+				FFC610961CE6297700E93DAB /* NoteController.swift */,
+			);
+			name = "Model Coontroller";
+			sourceTree = "<group>";
+		};
+		FFC610991CE6298700E93DAB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FFC610941CE6297100E93DAB /* Note.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		FFC6109A1CE6298E00E93DAB /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FFC610901CE6295A00E93DAB /* NoteTableViewController.swift */,
+				FFC610921CE6296900E93DAB /* NoteDetailViewController.swift */,
+			);
+			name = "View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +169,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AFCF6BE1CDC050E006D2F3D /* AppDelegate.swift in Sources */,
+				FFC610911CE6295A00E93DAB /* NoteTableViewController.swift in Sources */,
+				FFC610931CE6296900E93DAB /* NoteDetailViewController.swift in Sources */,
+				FFC610951CE6297100E93DAB /* Note.swift in Sources */,
+				FFC610971CE6297700E93DAB /* NoteController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +322,7 @@
 				1AFCF6CE1CDC050E006D2F3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
