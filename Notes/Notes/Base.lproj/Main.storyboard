@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--NOTES-->
@@ -70,8 +71,32 @@
                     <view key="view" contentMode="scaleToFill" id="wp5-ZE-6LD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="How Was Your Day?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NhR-8d-mWW">
+                                <rect key="frame" x="20" y="95" width="560" height="420"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="b7g-Vq-cWN" firstAttribute="top" secondItem="NhR-8d-mWW" secondAttribute="bottom" constant="85" id="6Ts-4C-MHL"/>
+                            <constraint firstItem="NhR-8d-mWW" firstAttribute="trailing" secondItem="wp5-ZE-6LD" secondAttribute="trailingMargin" id="W1P-1a-zIa"/>
+                            <constraint firstItem="NhR-8d-mWW" firstAttribute="leading" secondItem="wp5-ZE-6LD" secondAttribute="leadingMargin" id="dgL-bb-RRM"/>
+                            <constraint firstItem="NhR-8d-mWW" firstAttribute="top" secondItem="WLC-Lj-TUn" secondAttribute="bottom" constant="31" id="fqu-af-SOF"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="1V0-ec-36G">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="16Z-Ny-tmM">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="sF8-q2-VKb" id="BEh-li-NbW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="noteTextView" destination="NhR-8d-mWW" id="gUA-vc-eyC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GL7-rK-QEf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -97,6 +122,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vUe-0S-6IY"/>
+        <segue reference="oQY-As-Mys"/>
     </inferredMetricsTieBreakers>
 </document>
