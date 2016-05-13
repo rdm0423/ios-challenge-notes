@@ -50,7 +50,14 @@ class NoteTableViewController: UITableViewController {
         let note = NoteController.sharedController.notes[indexPath.row]
         
         cell.textLabel?.text = note.entry
-        cell.detailTextLabel?.text = "\(note.timeStamp)"
+        
+        // Format Date
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        let convertedDate = dateFormatter.stringFromDate(note.timeStamp)
+        
+        cell.detailTextLabel?.text = convertedDate
 
         return cell
     }
