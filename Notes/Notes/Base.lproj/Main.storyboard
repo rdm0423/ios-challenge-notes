@@ -14,9 +14,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search Your Notes.." id="FfV-WW-UQl">
+                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteCell" textLabel="m4K-jd-LeX" detailTextLabel="6KW-nH-Tqr" style="IBUITableViewCellStyleValue1" id="fPj-cg-ytA">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fPj-cg-ytA" id="UZ2-nC-iNJ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -51,10 +56,14 @@
                     <navigationItem key="navigationItem" title="NOTES" id="69w-IZ-YUi">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="oXb-Af-v2n">
                             <connections>
+                                <action selector="addNewNoteButtonTapped:" destination="WoD-8a-JfM" id="Nhr-5X-p4v"/>
                                 <segue destination="sF8-q2-VKb" kind="show" identifier="addNoteSegue" id="vUe-0S-6IY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="FfV-WW-UQl" id="yLo-Pp-FBd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qW0-ka-FAw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -79,10 +88,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRr-TV-rAQ">
+                                <rect key="frame" x="289" y="558" width="22" height="22"/>
+                                <connections>
+                                    <action selector="infoButtonTapped:" destination="sF8-q2-VKb" eventType="touchUpInside" id="b39-Rx-Sl7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="rRr-TV-rAQ" firstAttribute="centerX" secondItem="NhR-8d-mWW" secondAttribute="centerX" id="0d5-qc-etc"/>
                             <constraint firstItem="NhR-8d-mWW" firstAttribute="leading" secondItem="wp5-ZE-6LD" secondAttribute="leadingMargin" id="8FA-IC-I9j"/>
+                            <constraint firstAttribute="bottom" secondItem="rRr-TV-rAQ" secondAttribute="bottom" constant="20" symbolic="YES" id="Ghl-Zm-xYz"/>
                             <constraint firstItem="NhR-8d-mWW" firstAttribute="top" secondItem="WLC-Lj-TUn" secondAttribute="bottom" constant="8" symbolic="YES" id="VFd-5g-V7w"/>
                             <constraint firstItem="b7g-Vq-cWN" firstAttribute="top" secondItem="NhR-8d-mWW" secondAttribute="bottom" constant="85" id="cEz-xW-R5D"/>
                             <constraint firstItem="NhR-8d-mWW" firstAttribute="trailing" secondItem="wp5-ZE-6LD" secondAttribute="trailingMargin" id="o5u-Kw-Nsc"/>

@@ -8,11 +8,22 @@
 
 import UIKit
 
-class NoteTableViewController: UITableViewController {
+class NoteTableViewController: UITableViewController, UISearchBarDelegate {
 
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    var searchActive: Bool = false
+    var filtered: [String] = []
+//    var notes: [Note]
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        searchBar.delegate = self
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -25,6 +36,43 @@ class NoteTableViewController: UITableViewController {
         
         tableView.reloadData()
     }
+    
+    // MARK: - SearchBar Delegate
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchActive = true;
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        let notes = NoteController.sharedController.notes
+        
+//        filtered = notes.filter({ (text) -> Bool in
+//            let tmp: NSString = text
+//            let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
+//            return range.location != NSNotFound
+//        })
+//        if(filtered.count == 0){
+//            searchActive = false;
+//        } else {
+//            searchActive = true;
+//        }
+//        self.tableView.reloadData()
+    }
+
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
