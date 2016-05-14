@@ -8,24 +8,20 @@
 
 import UIKit
 
-class NoteTableViewController: UITableViewController, UISearchBarDelegate {
+class NoteTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
 
-    @IBOutlet weak var searchBar: UISearchBar!
-    
-    var searchActive: Bool = false
-    var filtered: [String] = []
-    var notes: [Note]?
+    var noteArray = [String]() // ***************** NEED TO ACCESS MY NOTE DATA
+    var filteredNoteArray = [String]()
+    var shouldShowSearchResults = false
+    var searchController: UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchBar.delegate = self
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        // configure
+        configureSearchController()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -34,40 +30,65 @@ class NoteTableViewController: UITableViewController, UISearchBarDelegate {
         tableView.reloadData()
     }
     
-    // MARK: - SearchBar Delegate
+    // MARK: Search Controller Setup
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        searchActive = true;
+    func configureSearchController() {
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        
+        // dim background while searching??
+        searchController.dimsBackgroundDuringPresentation = true
+        
+        // placeholder text
+        searchController.searchBar.placeholder = "Search notes here..."
+        
+        // delegate
+        searchController.searchBar.delegate = self
+        
+        // proper size
+        searchController.searchBar.sizeToFit()
+        
+        // display searach bar to tableview
+        tableView.tableHeaderView = searchController.searchBar
     }
     
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        searchActive = false;
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        // makes the filteredArary the datasource when searching begins
+        shouldShowSearchResults = true
+        tableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchActive = false;
+        // makes the standard data source again when cancels
+        shouldShowSearchResults = false
+        tableView.reloadData()
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchActive = false;
+        if !shouldShowSearchResults {
+            shouldShowSearchResults = true
+            tableView.reloadData()
+        }
+        searchController.searchBar.resignFirstResponder()
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    // MARK: UISearchResultsUpdating delegate function
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
         
-//        let notes = NoteController.sharedController.notes
-//        
-//        filtered = notes.filter({ (text) -> Bool in
-//            let tmp: NSString = text
-//            let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
-//            return range.location != NSNotFound
-//        })
-//        if(filtered.count == 0){
-//            searchActive = false;
-//        } else {
-//            searchActive = true;
-//        }
-//        self.tableView.reloadData()
+        guard let searchString = searchController.searchBar.text else {
+            return
+        }
+        // filter the dataArray and get only those countries that match the search text
+        filteredNoteArray = noteArray.filter({ (note) -> Bool in
+            let noteText:NSString = note
+            return (noteText.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+        })
+        // reload the tableview
+        tableView.reloadData()
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -83,28 +104,31 @@ class NoteTableViewController: UITableViewController, UISearchBarDelegate {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        // TODO: Set code for handling activesearch 
-        
-        return NoteController.sharedController.notes.count
+        if shouldShowSearchResults {
+            return filteredNoteArray.count
+        } else {
+            return noteArray.count
+        }
     }
 
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("noteCell", forIndexPath: indexPath)
         
-        // TODO: Set code for handling activesearch
-        
         let note = NoteController.sharedController.notes[indexPath.row]
-        
-        cell.textLabel?.text = note.entry
         
         // Format Date
         let dateFormatter = NSDateFormatter()
-        
         dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
         let convertedDate = dateFormatter.stringFromDate(note.timeStamp)
+//        cell.textLabel?.text = note.entry
         
-        cell.detailTextLabel?.text = convertedDate
+        // Search Check Logic
+        if shouldShowSearchResults {
+            cell.textLabel?.text = filteredNoteArray[indexPath.row]
+            cell.detailTextLabel?.text = convertedDate
+        } else {
+            cell.textLabel?.text = noteArray[indexPath.row]
+        }
 
         return cell
     }
