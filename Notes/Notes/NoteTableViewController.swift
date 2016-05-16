@@ -19,7 +19,12 @@ class NoteTableViewController: UITableViewController, UISearchBarDelegate, UISea
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let backgroundImage = UIImage(named: "bg.png")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
         
+        // center and scale background image
+        imageView.contentMode = .ScaleAspectFill
         
         // configure
 //        configureSearchController()
@@ -202,6 +207,11 @@ class NoteTableViewController: UITableViewController, UISearchBarDelegate, UISea
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
+    }
+    
+    // MARK: Custom BackGround with Clear cells
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
     }
     
     // MARK: - Navigation
