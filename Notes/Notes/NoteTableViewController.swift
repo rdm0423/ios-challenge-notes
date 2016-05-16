@@ -8,12 +8,13 @@
 
 import UIKit
 
-class NoteTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
+class NoteTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, CustomSearchControllerDelegate {
 
     var noteArray = [String]() // ***************** NEED TO ACCESS MY NOTE DATA
     var filteredNoteArray = [String]()
     var shouldShowSearchResults = false
     var searchController: UISearchController!
+    var customSearchController: CustomerSearchViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,9 @@ class NoteTableViewController: UITableViewController, UISearchBarDelegate, UISea
         
         
         // configure
-        configureSearchController()
+//        configureSearchController()
+        configureCustomSearchController()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -51,6 +54,16 @@ class NoteTableViewController: UITableViewController, UISearchBarDelegate, UISea
         
         // display searach bar to tableview
         tableView.tableHeaderView = searchController.searchBar
+    }
+    
+    // MARK: Custom SearchBar
+    func configureCustomSearchController() {
+        customSearchController = CustomerSearchViewController(searchResultsController: self, searchBarFrame: CGRectMake(0.0, 0.0, tableView.frame.size.width, 50.0), searchBarFont: UIFont(name: "Futura", size: 16.0)!, searchBarTextColor: UIColor.lightGrayColor(), searchBarTintColor: UIColor.blackColor())
+        
+        customSearchController.customSearchBar.placeholder = "Search Notes..."
+        tableView.tableHeaderView = customSearchController.customSearchBar
+        
+        customSearchController.customDelegate = self
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
@@ -86,6 +99,40 @@ class NoteTableViewController: UITableViewController, UISearchBarDelegate, UISea
             return (noteText.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
         })
         // reload the tableview
+        tableView.reloadData()
+    }
+    
+    // MARK: CustomSearchControllerDelegate functions
+    
+    func didStartSearching() {
+        shouldShowSearchResults = true
+        tableView.reloadData()
+    }
+    
+    
+    func didTapOnSearchButton() {
+        if !shouldShowSearchResults {
+            shouldShowSearchResults = true
+            tableView.reloadData()
+        }
+    }
+    
+    
+    func didTapOnCancelButton() {
+        shouldShowSearchResults = false
+        tableView.reloadData()
+    }
+    
+    
+    func didChangeSearchText(searchText: String) {
+        // Filter the data array and get only those countries that match the search text.
+        filteredNoteArray = noteArray.filter({ (country) -> Bool in
+            let countryText: NSString = country
+            
+            return (countryText.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+        })
+        
+        // Reload the tableview.
         tableView.reloadData()
     }
 
